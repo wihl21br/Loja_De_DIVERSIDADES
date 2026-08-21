@@ -6,3 +6,4 @@ Para os clientes, o site funcionará como uma loja virtual. Eles poderão pesqui
 Após a compra, o cliente terá acesso às informações do pedido e à previsão de entrega. Caso ocorra algum atraso, será disponibilizado um telefone para contato com a loja.
 O objetivo é criar uma solução que una gestão, divulgação e vendas em uma única plataforma, facilitando o trabalho do administrador e proporcionando uma experiência de compra mais rápida e organizada para o cliente.
 
+https://app.moqups.com/yhLpILxOQWvp3V3clUuAmfrmnY5g7ggN/view/page/ad64222d5
