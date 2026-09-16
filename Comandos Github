@@ -1,18 +1,1 @@
 
-
-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
-
-git clone https://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@github.com/wihl21br/prog1-tri2.atv1 projeto
-
-code --user-data-dir=vscode-data projeto
-
-git init -y
-
-git add --all
-
-git commit -m ...
-
-git push
-
-bun add -d typescript@5.9
- 	
