@@ -1,0 +1,35 @@
+protocolo://endereço:porta/
+--caminho/subpasta/arquivo.txt-?nome=wiil&idade=17
+## 2/9/2026
+U R L
+
+universal Recurses Locator.
+
+HTTP://
+WS
+POP3
+protocolo://(endereço ou  localização) : (porta)/(caminho ou rota)/subpasta/arquivo.txt-?(query= encontrar iten no arquivo com base nos if dentro)nome=wiil & idade=17
+
+HTTPs
+Padaria 
+receber pedido - usar  -enviar esposta
+
+
+**usuario**
+[Post/HTTP/1.1]
+[metodo/versao do protocolo/versao]
+
+
+[Metadados sobre os dados enviados]
+
+[conteudo dos Dados]
+
+**Receber** 
+
+[Post/HTTP/1.1  estatus_server      status_usuario]
+
+
+
+Codigo
+
+bun --watch nome_arquivo (nao parar o servidor)
