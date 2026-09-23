@@ -1,5 +1,4 @@
-
-import { db } from "../db"
+import { db } from "./db"
 
 const srv = Bun.serve({
     port: 3000,
@@ -7,7 +6,7 @@ const srv = Bun.serve({
         "/user": {
             GET: () => {
                 const query = db.query(`
-                    SELECT * FROM users;
+                    SELECT * FROM usuarios;
                 `)
                 const data = query.all()
                 return Response.json(data, { status: 200 })
@@ -17,70 +16,55 @@ const srv = Bun.serve({
             POST: async (req) => {
                 const body = await req.body.json()
                 const query = db.query(`
-                    INSERT INTO users(username, email, password_hash)
-                    VALUES(:username, :email, :password_hash)
+                    INSERT INTO usuarios(nome, email, senha, telefone)
+                    VALUES(:nome, :email, :senha, :telefone)
                 `)
                 const dbResp = query.run({
-                    ':username': body.username, 
+                    ':nome': body.nome,
                     ':email': body.email, 
-                    ':password_hash': body.password
+                    ':senha': body.senha,
+                    ':telefone': body.telefone
                 })
                 return Response.json({
-                    "message": "deu boa garote!",
+                    "message": "CADASTRADO COM SUCESSO, GAROTE!",
                     dbResp
                 })
-            },
-            PUT: async (req) => {
-                const body = await req.body.json()
-                const id = req.params.id
-                const query = db.query(`
-                    UPDATE users SET username = :username, email = :email, password_hash = :password_hash WHERE id = :id
-                `) 
-                const dbResp = query.run({
-                    ':username': body.username, 
-                    ':email': body.email,
-                    ':password': body.password,
-                    ':id': id
-                })
-                return Response.json({
-                    "message": "deu boa garote!",
-                    dbResp
-                })
-            },
-            DELETE: (req) => {
-                const id = req.params.id
-                const query = db.query(`
-                    DELETE FROM users WHERE id = :id
-                `)
-                const dbResp = query.run({
-                    ':id': id
-                })
-                return Response.json({
-                      "message": "deu bom",
-                    dbResp          
-                })
-            },
+            }
+           
         },
 
         "/user/:id": {
             GET: (req) => {
                 const id = req.params.id
                 const query = db.query(`
-                    SELECT * FROM users WHERE id = :id
+                    SELECT * FROM usuarios WHERE id = :id
                 `)
                 const data = query.get({
                     ':id': id
                 })
-                return Response.json(data, { status: 200 })
+                return Response.json(data)
             },  
-            POST: () =>{
-                
-                Response.json("", { status: 501 })
+            PUT: async(req) => {
+                const body = await req.body.json()
+                const query = db.query(`UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, telefone = :telefone WHERE id = :id`)
+                const dbResp = query.run({
+                    ':nome': body.nome,
+                    ':email': body.email,
+                    ':senha': body.senha,
+                    ':telefone': body.telefone,
+                    ':id': req.params.id
+                })
+                return Response.json(dbResp)
             },
-            PUT: () => Response.json("", { status: 501 }),
-            DELETE: () => Response.json("", { status: 501 }),
+
+            DELETE: (req) => {
+                const query = db.query(`DELETE FROM usuarios WHERE id=:id`)
+                const data = query.run({ ':id': req.params.id })
+                return Response.json(data)
+            },
+        },
         }
     }
-})
+)
 
 console.log(`Servidor em ${srv.url}`)
